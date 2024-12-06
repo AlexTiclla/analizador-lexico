@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador Léxico</title>
+    <link rel="stylesheet" href="./src/css/style.css">
+
+</head>
+<body>
+    <h1>Analizador Léxico</h1>
+    <div class="container">
+        <label for="code-input">Introduce tu código:</label>
+        <textarea id="code-input" placeholder="Escribe tu código aquí..."></textarea>
+        <button id="analyze-btn">Analizar</button>
+        <button id="next-btn" disabled>Siguiente</button>
+        <button id="finish-btn" disabled>Finalizar</button>
+        <div class="output" id="output">
+            <div id="token-type">Tipo: </div>
+            <div id="token-value">Valor: </div>
+        </div>
+    </div>
+    
+    <script src="./src/js/Analex.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
