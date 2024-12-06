@@ -26,7 +26,7 @@ class Analex {
     // Método para tokenizar una línea
     tokenize(line) {
         // Expresión regular para identificar diferentes tipos de lexemas
-        const regex = /(\w+|\d+|\/\/.*|\(\*.*?\*\)|".*?"|\+\+|--|>=|<=|<>|!=|==|<|>|\(|\)|{|}|:=|\+|-|\*|\/|%|,|;|:|!)/g;
+        const regex = /(\w+|\d+|\/\/.*|\(\*.*?\*\)|".*?"|\+\+|--|>=|<=|<>|!=|==|=|<|>|\(|\)|{|}|:=|\+|-|\*|\/|%|,|;|:|!)/g;
         let match;
         // Encuentra todos los lexemas en la línea
         while ((match = regex.exec(line)) !== null) {

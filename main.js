@@ -47,8 +47,8 @@ document.getElementById("next-btn").addEventListener("click", () => {
 document.getElementById("finish-btn").addEventListener("click", () => {
     // Resetea los campos de entrada y visualización de tokens
     document.getElementById("code-input").value = '';
-    document.getElementById("token-type").textContent = 'Tipo: ';
-    document.getElementById("token-value").textContent = 'Valor: ';
+    document.getElementById("token-type").textContent = 'Token: ';
+    document.getElementById("token-value").textContent = 'Lexema: ';
     // Deshabilita los botones "next" y "finish"
     document.getElementById("next-btn").disabled = true;
     document.getElementById("finish-btn").disabled = true;
@@ -60,6 +60,6 @@ document.getElementById("finish-btn").addEventListener("click", () => {
 // Función para mostrar el token actual
 function showToken(typeElement, valueElement) {
     const token = tokens[currentIndex];
-    typeElement.textContent = `Tipo: ${token.type}`;
-    valueElement.textContent = `Valor: ${token.value}`;
+    typeElement.textContent = `Token: ${token.type}`;
+    valueElement.textContent = `Lexema: ${token.value}`;
 }
