@@ -55,12 +55,12 @@ class Analex {
         // Verifica si el lexema es un número
         } else if (/^\d+$/.test(lexeme)) {
             this.tokens.push({ type: `<NUM,${lexeme}>`, value: lexeme });
-        // Verifica si el lexema es un comentario de línea
+        // Verifica si el lexema es un comentario de línea, si es lo salta
         } else if (/^\/\/.*/.test(lexeme)) {
-            this.tokens.push({ type: "<COMMENT_LINE,_>", value: lexeme });
-        // Verifica si el lexema es un comentario de bloque
+            return;
+        // Verifica si el lexema es un comentario de bloque, si es lo salta
         } else if (/^\(\*.*\*\)$/.test(lexeme)) {
-            this.tokens.push({ type: "<COMMENT_BLOCK,_>", value: lexeme });
+            return;
         // Verifica si el lexema es un identificador
         } else if (/^[a-zA-Z]\w*$/.test(lexeme)) {
             this.tokens.push({ type: "<ID,-1>", value: lexeme });
