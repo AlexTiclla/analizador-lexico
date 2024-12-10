@@ -25,12 +25,10 @@ class Analex {
 
     // Método para tokenizar una línea
     tokenize(line) {
-        // Expresión regular para identificar diferentes tipos de lexemas
-        const regex = /(\w+|\d+|\/\/.*|\(\*.*?\*\)|".*?"|\+\+|--|>=|<=|<>|!=|==|=|<|>|\(|\)|{|}|:=|\+|-|\*|\/|%|,|;|:|!)/g;
+        // Modificamos la regex para capturar comentarios de bloque incompletos
+        const regex = /(\w+|\d+|\/\/.*|\(\*.*?\*\)|\(\*.*|".*?"|\+\+|--|>=|<=|<>|!=|==|=|<|>|\(|\)|{|}|:=|\+|-|\*|\/|%|,|;|:|!)/g;
         let match;
-        // Encuentra todos los lexemas en la línea
         while ((match = regex.exec(line)) !== null) {
-            // Clasifica cada lexema encontrado
             this.classifyToken(match[0]);
         }
     }
@@ -58,10 +56,11 @@ class Analex {
         // Verifica si el lexema es un comentario de línea, si es lo salta
         } else if (/^\/\/.*/.test(lexeme)) {
             return;
-        // Verifica si el lexema es un comentario de bloque, si es lo salta
+        // Modificamos la verificación de comentarios de bloque
         } else if (/^\(\*.*\*\)$/.test(lexeme)) {
-            return;
-        // Verifica si el lexema es un identificador
+            return; // Comentario bien formado, lo ignoramos
+        } else if (/^\(\*.*$/.test(lexeme)) {
+            this.tokens.push({ type: "<ERROR,_>", value: "Comentario no cerrado" });
         } else if (/^[a-zA-Z]\w*$/.test(lexeme)) {
             this.tokens.push({ type: "<ID,-1>", value: lexeme });
         // Verifica si el lexema es una cadena de texto
@@ -138,7 +137,7 @@ class Analex {
                     this.tokens.push({ type: "<MENOS,_>", value: lexeme });
                     break;
                 default:
-                    this.tokens.push({ type: "<ERROR,_>", value: lexeme });
+                    this.tokens.push({ type: "<ERROR,_>", value: lexeme }); // Falta aun para comentarios.
             }
         }
     }
